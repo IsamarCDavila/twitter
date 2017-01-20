@@ -1,0 +1,33 @@
+body {
+	font-size: 16px;
+}
+.titulo{
+	background:rgb(224,224,224);
+}
+ 
+
+.boton{
+	background: rgb(51,122,183);
+	color:white;
+}
+ 
+
+
+ 
+.titulo{
+	background: rgb(224,224,224);
+}
+.boton{
+	margin-top: 15px;
+	background: rgb(51,122,183);
+	border:rgb(51,122,183);
+	color:white;
+	padding: 5px;
+	border-radius: 5px;
+}
+.tareas{
+	margin-top: 20px;
+}
+.tareas ul{
+	list-style: none;
+}
