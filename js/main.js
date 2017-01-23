@@ -1,60 +1,51 @@
+var lista=document.getElementById("lista");
 
-(function(){
-	// Variables
-	var lista = document.getElementById("lista"),
-		tareaInput = document.getElementById("tareaInput"),
-		btnNuevaTarea = document.getElementById("btn-agregar");
- 
-	// Funciones
-	var agregarTarea = function(){
-		var tarea = tareaInput.value,
-			nuevaTarea = document.createElement("li"),
-			enlace = document.createElement("a"),
-			contenido = document.createTextNode(tarea);
- 
-		if (tarea === "") {
-			tareaInput.setAttribute("placeholder", "Agrega una tarea valida");
-			tareaInput.className = "error";
-			return false;
-		}
- 
-		// Agregamos el contenido al enlace
-		enlace.appendChild(contenido);
-		// Le establecemos un atributo href
-		enlace.setAttribute("href", "#");
-		// Agrergamos el enlace (a) a la nueva tarea (li)
-		nuevaTarea.appendChild(enlace);
-		// Agregamos la nueva tarea a la lista
-		lista.appendChild(nuevaTarea);
- 
-		tareaInput.value = "";
- 
-		for (var i = 0; i <= lista.children.length -1; i++) {
-			lista.children[i].addEventListener("click", function(){
-				this.parentNode.removeChild(this);
-			});
-		}
- 
-	};
-	var comprobarInput = function(){
-		tareaInput.className = "";
-		teareaInput.setAttribute("placeholder", "Agrega tu tarea");
-	};
- 
-	var eleminarTarea = function(){
-		this.parentNode.removeChild(this);
-	};
- 
-	// Eventos
- 
-	// Agregar Tarea
-	btnNuevaTarea.addEventListener("click", agregarTarea);
- 
-	// Comprobar Input
-	tareaInput.addEventListener("click", comprobarInput);
- 
-	// Borrando Elementos de la lista
-	for (var i = 0; i <= lista.children.length -1; i++) {
-		lista.children[i].addEventListener("click", eleminarTarea);
+function aniadirTarea()
+{
+	var tarea=document.getElementById("tarea");
+	if(tarea.value.length==0){
+		alert("Debe ingresar Tarea");
 	}
-}());
+	else{
+		crearNodos(lista,tarea.value);
+	}
+	tarea.value="";
+	tarea.focus();
+}
+function crearNodos(lista,tareaInput)
+{
+	var div=document.createElement("div");
+	//div.className="checkbox";
+	var span=document.createElement("span");
+	var checkbox=document.createElement("input");
+	checkbox.type="checkbox";
+	var icono=document.createElement("i");
+	//checkbox.type="checkbox";
+	
+	
+	icono.className="fa , fa-trash-o , pull-right";
+	div.appendChild(checkbox);
+	span.innerHTML=tareaInput;
+	div.appendChild(span);
+	div.appendChild(icono);
+	lista.appendChild(div);
+
+	icono.addEventListener('click', eliminarNodos);
+	checkbox.addEventListener('click',check);
+}
+function eliminarNodos(evt){
+	var elemento=evt.target.parentNode;
+	//elemento.parentNode->id lista
+	lista.removeChild(elemento);
+}
+function check(evt){
+	//spam
+	var hijo=evt.target.nextSibling;
+	//console.log(hijo);
+	if(evt.target.checked){
+		hijo.setAttribute("style","text-decoration: line-through");
+
+	}else{
+		hijo.setAttribute("style","text-decoration: none");
+	}
+}

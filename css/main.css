@@ -31,3 +31,18 @@ body {
 .tareas ul{
 	list-style: none;
 }
+.tareas .lista li a {
+	color: #212121;
+	display: block;
+	text-decoration: none;
+}
+.tareas .lista li:hover {
+	text-decoration: line-through;
+}
+#lista{
+	margin-top: 20px;
+	background:rgb(224,224,224) ;
+}
+#tarea{
+	width: 100%;
+}
